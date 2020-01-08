@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use JMS\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ApiController extends AbstractController
@@ -30,11 +32,14 @@ class ApiController extends AbstractController
      * @Route("/api/user/new", methods="POST")
      * 
      */
-    public function test(Request $request, UserPasswordEncoderInterface $encoder)
+    public function test(Request $request, UserPasswordEncoderInterface $encoder, SerializerInterface $s)
     {
 
         $response = $request->getContent();
-        return $this->json($response);
+        $user = $s->deserialize($response, User::class, 'json');
+        $this->em->persist($user);
+        $this->em->flush();
+        return JsonResponse($user);
     }
 
 
