@@ -7,11 +7,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class ApiController extends AbstractController
+class ApiController extends AbstractFOSRestController
 {
     private $em;
 
@@ -41,7 +42,6 @@ class ApiController extends AbstractController
         $this->em->flush();
         return JsonResponse($user);
     }
-
 
 
 }

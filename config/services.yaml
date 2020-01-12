@@ -25,3 +25,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+fos_rest:
+    view:
+        formats:
+            json: true
+            xml: false
+            rss: false
+    body_listener: true
+    format_listener:
+        enabled: true
+        rules:
+            - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+    routing_loader:
+            default_format: json
