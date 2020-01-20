@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,6 +12,9 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\View;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ApiController extends AbstractFOSRestController
 {
@@ -30,17 +34,21 @@ class ApiController extends AbstractFOSRestController
         ]);
     }
     /**
-     * @Route("/api/user/new", methods="POST")
      * 
+     * @Post(
+     * path="/api/projects/new",
+     * name="create_project",
+     * requirements={"name"="[a-zA-Z0-9\s]+"}
+     * )
+     * @paramConverter("project",converter="fos_rest.request_body")
+     * @View
      */
-    public function test(Request $request, UserPasswordEncoderInterface $encoder, SerializerInterface $s)
-    {
+    public function createProjectAction(Project $project){
+        $user = $this->getUser();
 
-        $response = $request->getContent();
-        $user = $s->deserialize($response, User::class, 'json');
-        $this->em->persist($user);
-        $this->em->flush();
-        return JsonResponse($user);
+        
+        return $project;
+        // return $this->getUser();
     }
 
 

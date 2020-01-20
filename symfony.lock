@@ -150,6 +150,18 @@
     "psr/log": {
         "version": "1.1.2"
     },
+    "sensio/framework-extra-bundle": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        },
+        "files": [
+            "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
     "symfony/cache": {
         "version": "v4.4.2"
     },
@@ -252,6 +264,9 @@
     "symfony/mime": {
         "version": "v4.4.2"
     },
+    "symfony/options-resolver": {
+        "version": "v4.4.2"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.7"
     },
@@ -317,6 +332,26 @@
     "symfony/stopwatch": {
         "version": "v4.4.2"
     },
+    "symfony/translation-contracts": {
+        "version": "v1.1.7"
+    },
+    "symfony/twig-bridge": {
+        "version": "v4.4.2"
+    },
+    "symfony/twig-bundle": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "15a41bbd66a1323d09824a189b485c126bbefa51"
+        },
+        "files": [
+            "config/packages/test/twig.yaml",
+            "config/packages/twig.yaml",
+            "templates/base.html.twig"
+        ]
+    },
     "symfony/var-dumper": {
         "version": "v4.4.2"
     },
@@ -334,6 +369,9 @@
     },
     "symfony/yaml": {
         "version": "v4.4.2"
+    },
+    "twig/twig": {
+        "version": "v2.12.3"
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"
